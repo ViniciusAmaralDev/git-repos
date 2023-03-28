@@ -1,4 +1,13 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@types/*": ["./@types/*"],
+      "@assets/*": ["./application/assets/*"],
+      "@components/*": ["./application/components/*"],
+      "@flows/*": ["./application/flows/*"],
+      "@hooks/*": ["./application/hooks/*"]
+    }
+  },
   "extends": "expo/tsconfig.base"
 }
