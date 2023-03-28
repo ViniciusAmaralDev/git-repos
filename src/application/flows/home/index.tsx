@@ -1,8 +1,11 @@
 import React from "react";
 import HomeLayout from "./layout";
+import { useOwner } from "@hooks/owner";
 
 const Home = () => {
-  return <HomeLayout />;
+  const { owners, getOwner } = useOwner();
+
+  return <HomeLayout owners={owners} handleSearch={getOwner} />;
 };
 
 export default Home;
