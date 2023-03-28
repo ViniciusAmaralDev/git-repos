@@ -1,14 +1,15 @@
-import { OwnerProvider } from "@hooks/owner";
-import { RepositoryProvider } from "@hooks/repository";
 import React from "react";
+import theme from "./theme";
 import MainRoute from "./routes";
+import Providers from "./providers";
+import { ThemeProvider } from "styled-components";
 
 export default function App() {
   return (
-    <OwnerProvider>
-      <RepositoryProvider>
+    <ThemeProvider theme={theme}>
+      <Providers>
         <MainRoute />
-      </RepositoryProvider>
-    </OwnerProvider>
+      </Providers>
+    </ThemeProvider>
   );
 }
