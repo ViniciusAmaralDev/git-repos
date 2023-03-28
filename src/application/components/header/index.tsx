@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import {
   Container,
   HeaderTitle,
-  RightContainer,
+  Content,
   ArrowButton,
   ArrowLeftIcon,
 } from "./styles";
@@ -11,21 +11,26 @@ import {
 type Props = {
   title: string;
   goBack?: () => void;
+  leftContainer?: JSX.Element;
   rightContainer?: JSX.Element;
 };
 
-const Header = ({ title, rightContainer, goBack }: Props) => {
+const Header = ({ title, leftContainer, rightContainer, goBack }: Props) => {
   const navigation = useNavigation();
 
   return (
     <Container>
-      <ArrowButton onPress={() => (goBack ? goBack() : navigation.goBack())}>
-        <ArrowLeftIcon />
-      </ArrowButton>
+      {leftContainer ? (
+        <Content>{leftContainer}</Content>
+      ) : (
+        <ArrowButton onPress={() => (goBack ? goBack() : navigation.goBack())}>
+          <ArrowLeftIcon />
+        </ArrowButton>
+      )}
 
       <HeaderTitle>{title}</HeaderTitle>
 
-      <RightContainer>{rightContainer}</RightContainer>
+      <Content>{rightContainer}</Content>
     </Container>
   );
 };

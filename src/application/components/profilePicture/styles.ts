@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import Button from "../base/button";
 
 export const ImageBackground = styled.ImageBackground`
-  background-color: ${({ theme }) => theme.colors.YELLOW_LIGHT};
+  background-color: ${({ theme }) => theme.colors.GRAY_LIGHT};
 `;
 
 export const ChangeButton = styled(Button)`

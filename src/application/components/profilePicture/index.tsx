@@ -34,6 +34,7 @@ const ProfilePicture = ({
 
   return (
     <ImageBackground
+      resizeMode="contain"
       onLoadEnd={() => setLoad(false)}
       onLoadStart={() => setLoad(true)}
       {...rest}
