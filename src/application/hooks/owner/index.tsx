@@ -1,7 +1,7 @@
 import { Owner, OwnerContext } from "./types";
 import { Children } from "../../../@types/Children";
-import React, { createContext, useContext, useEffect, useState } from "react";
 import OwnerHttpService from "infrastructure/services/owner/http";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const Context = createContext({} as OwnerContext);
 
@@ -14,6 +14,7 @@ export const OwnerProvider = ({ children }: Children) => {
       const { data } = await httpService.getOwner(owner);
       setOwners((values) => [...values, data]);
     } catch (error: any) {
+      console.log("ERROR =>", error);
       throw error;
     }
   };
@@ -22,7 +23,9 @@ export const OwnerProvider = ({ children }: Children) => {
     getOwner("viniciusamaraldev");
   }, []);
 
-  return <Context.Provider value={{ owners }}>{children}</Context.Provider>;
+  return (
+    <Context.Provider value={{ owners, getOwner }}>{children}</Context.Provider>
+  );
 };
 
 export const useOwner = () => useContext(Context);

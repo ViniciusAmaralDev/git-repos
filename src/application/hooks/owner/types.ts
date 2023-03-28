@@ -35,4 +35,5 @@ export type Owner = {
 
 export type OwnerContext = {
   owners: Owner[];
+  getOwner: (owner: string) => Promise<void>;
 };

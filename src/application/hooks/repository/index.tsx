@@ -11,7 +11,6 @@ export const RepositoryProvider = ({ children }: Children) => {
   const httpService = new RepositoryHttpService();
 
   const [repositories, setRepositories] = useState<Repository[]>([]);
-  console.log("REPOSITORIES =>", repositories);
 
   const getRepositories = async () => {
     try {
@@ -23,7 +22,7 @@ export const RepositoryProvider = ({ children }: Children) => {
   };
 
   useEffect(() => {
-    getRepositories();
+    // getRepositories();
   }, []);
 
   return (
