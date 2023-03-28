@@ -1,0 +1,12 @@
+import styled from "styled-components/native";
+
+type ContainerProps = { paddingTop: number; paddingBottom: number };
+
+export const Container = styled.View<ContainerProps>`
+  flex: 1;
+  padding-top: ${({ paddingTop }) => paddingTop}px;
+  padding-bottom: ${({ paddingBottom }) => paddingBottom}px;
+  background-color: ${({ theme }) => theme.colors.BACKGROUND};
+`;
+
+export const ScrollView = styled.ScrollView``;
