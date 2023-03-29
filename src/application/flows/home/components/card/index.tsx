@@ -1,5 +1,6 @@
 import React from "react";
 import { Owner } from "@hooks/owner/types";
+import { TouchableOpacityProps } from "react-native";
 import {
   Container,
   HorizontalContainer,
@@ -9,11 +10,11 @@ import {
   ArrowRightIcon,
 } from "./styles";
 
-type Props = { owner: Owner };
+type Props = TouchableOpacityProps & { owner: Owner };
 
-const Card = ({ owner }: Props) => {
+const Card = ({ owner, ...rest }: Props) => {
   return (
-    <Container>
+    <Container {...rest}>
       <HorizontalContainer>
         <Image source={{ uri: owner.avatar_url }} />
 
