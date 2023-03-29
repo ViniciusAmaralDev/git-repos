@@ -1,4 +1,4 @@
-import { Feather } from "@expo/vector-icons";
+import { AntDesign, Feather } from "@expo/vector-icons";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
@@ -16,3 +16,9 @@ export const SearchIcon = styled(Feather).attrs(({ theme }) => ({
 }))`
   margin-right: 8px;
 `;
+
+export const CloseIcon = styled(AntDesign).attrs(({ theme }) => ({
+  size: 20,
+  name: "close",
+  color: theme.colors.GRAY,
+}))``;

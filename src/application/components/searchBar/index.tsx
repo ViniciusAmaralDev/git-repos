@@ -1,13 +1,20 @@
-import React from "react";
 import Input from "@components/base/input";
 import { useTheme } from "styled-components";
-import { Container, SearchIcon } from "./styles";
-import { StyleProp, TextInputProps, ViewStyle } from "react-native";
+import Button from "@components/base/button";
+import React, { useRef, useState } from "react";
+import { Container, SearchIcon, CloseIcon } from "./styles";
+import { StyleProp, TextInput, TextInputProps, ViewStyle } from "react-native";
 
-type Props = TextInputProps & { containerStyle?: StyleProp<ViewStyle> };
+type Props = TextInputProps & {
+  handleClear: () => void;
+  containerStyle?: StyleProp<ViewStyle>;
+};
 
-const SearchBar = ({ containerStyle, ...rest }: Props) => {
+const SearchBar = ({ containerStyle, handleClear, ...rest }: Props) => {
   const theme = useTheme();
+  const ref = useRef<TextInput>(null);
+
+  const [inputValue, setInputValue] = useState("");
 
   const shadow = {
     shadowColor: theme.colors.BLACK,
@@ -21,10 +28,27 @@ const SearchBar = ({ containerStyle, ...rest }: Props) => {
     elevation: 2,
   };
 
+  const handleClearInput = () => {
+    handleClear();
+    setInputValue("");
+    ref.current?.clear();
+  };
+
   return (
-    <Container style={[{ ...shadow }, containerStyle]}>
+    <Container ref={ref} style={[{ ...shadow }, containerStyle]}>
       <SearchIcon />
-      <Input {...rest} />
+      <Input
+        ref={ref}
+        value={inputValue}
+        onChange={({ nativeEvent: { text } }) => setInputValue(text)}
+        {...rest}
+      />
+
+      {inputValue.length > 0 && (
+        <Button onPress={handleClearInput}>
+          <CloseIcon />
+        </Button>
+      )}
     </Container>
   );
 };
