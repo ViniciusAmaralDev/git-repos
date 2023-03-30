@@ -6,6 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 // SCREENS
 import Home from "@flows/home";
+import OwnerDetails from "@flows/owner-details";
+import ImageDetails from "@flows/image-details";
 
 const Stack = createStackNavigator<MainStackParamList>();
 
@@ -13,6 +15,14 @@ export default function MainStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={MainStackScreensEnum.HOME} component={Home} />
+      <Stack.Screen
+        name={MainStackScreensEnum.OWNER_DETAILS}
+        component={OwnerDetails}
+      />
+      <Stack.Screen
+        name={MainStackScreensEnum.IMAGE_DETAILS}
+        component={ImageDetails}
+      />
     </Stack.Navigator>
   );
 }
