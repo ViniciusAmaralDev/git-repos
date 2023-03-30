@@ -1,4 +1,5 @@
-# Git Repos
+# Git Repos - Aplicação em react native que consome a api do github e lista os repositórios, podendo interagir e muito mais.
+
 #### Escolha uma das opções abaixo e faça o clone o projeto:
 > HTTPS
 ```BASH
@@ -19,6 +20,13 @@ yarn install
 npm install
 ```
 
+> Se você for rodar em um emulador iOS, execute:
+```BASH
+npx pod-install
+ou
+cd ios && pod install && cd ..
+```
+
 #### Agora você está pronto para rodar o projeto, execute:
 ```BASH
 npx expo start
@@ -27,9 +35,13 @@ npx expo start
 
 iOS:
 ```BASH
-yarn android / yarn ios
+yarn android
+ou
+yarn ios
 ```
 Android:
 ```BASH
-npm run android / npm run ios
+npm run android
+ou
+npm run ios
 ```
