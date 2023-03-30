@@ -6,14 +6,12 @@ import ProfilePicture from "@components/profilePicture";
 
 type LabelProps = { light?: boolean };
 
-export const VerticalContainer = styled.View``;
-
-export const HorizontalContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
+export const VerticalContainer = styled.View`
+  flex: 1;
 `;
 
 export const Container = styled(Button)`
+  flex: 1;
   padding: 16px 0px;
   flex-direction: row;
   align-items: center;
@@ -39,7 +37,9 @@ export const Label = styled(Text)<LabelProps>`
 `;
 
 export const ArrowRightIcon = styled(AntDesign).attrs(({ theme }) => ({
-  size: 24,
+  size: 20,
   name: "arrowright",
   color: theme.colors.BLACK,
-}))``;
+}))`
+  margin-left: 16px;
+`;
