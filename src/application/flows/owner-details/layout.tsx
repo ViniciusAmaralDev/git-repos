@@ -12,16 +12,29 @@ import {
   Label,
   LinkButton,
   TextButton,
-  Load,
   ButtonsContainer,
+  Button,
+  TrashIcon,
 } from "./styles";
 import { Linking } from "react-native";
 import { Repository } from "@hooks/repository/types";
 import RepositoryCard from "./components/repositoryCard";
 
-type Props = { loading: boolean; owner: Owner; repositories: Repository[] };
+type Props = {
+  loading: boolean;
+  owner: Owner;
+  repositories: Repository[];
+  openDeleteModal: () => void;
+  navigateToImageDetailsScreen: () => void;
+};
 
-const OwnerDetailsLayout = ({ loading, owner, repositories }: Props) => {
+const OwnerDetailsLayout = ({
+  loading,
+  owner,
+  repositories,
+  openDeleteModal,
+  navigateToImageDetailsScreen,
+}: Props) => {
   const details = [
     { label: "Tipo da conta", value: owner.type },
     { label: "Email", value: owner.email },
@@ -30,9 +43,22 @@ const OwnerDetailsLayout = ({ loading, owner, repositories }: Props) => {
   ];
 
   return (
-    <Container header={<Header title="Detalhes" />}>
+    <Container
+      header={
+        <Header
+          title="Detalhes"
+          rightContainer={
+            <Button onPress={openDeleteModal}>
+              <TrashIcon />
+            </Button>
+          }
+        />
+      }
+    >
       <HorizontalContainer>
-        <Image source={{ uri: owner.avatar_url }} />
+        <Button onPress={navigateToImageDetailsScreen}>
+          <Image source={{ uri: owner.avatar_url }} />
+        </Button>
 
         <VerticalContainer>
           <Label showMarginBottom>{owner.login}</Label>
@@ -51,9 +77,25 @@ const OwnerDetailsLayout = ({ loading, owner, repositories }: Props) => {
       </Content>
 
       <Content>
+        <Label>Links</Label>
+        <ButtonsContainer>
+          <LinkButton onPress={() => Linking.openURL(owner.html_url)}>
+            <TextButton>GitHub</TextButton>
+          </LinkButton>
+
+          {owner.blog && (
+            <LinkButton onPress={() => Linking.openURL(owner.blog)}>
+              <TextButton>Blog</TextButton>
+            </LinkButton>
+          )}
+        </ButtonsContainer>
+      </Content>
+      <Content>
         <HorizontalContainer>
           <Label>Repositórios</Label>
-          {loading && <Load />}
+          {repositories.length > 0 && (
+            <Label light>({repositories.length})</Label>
+          )}
         </HorizontalContainer>
 
         {!loading && (
@@ -75,21 +117,6 @@ const OwnerDetailsLayout = ({ loading, owner, repositories }: Props) => {
             )}
           </>
         )}
-      </Content>
-
-      <Content>
-        <Label>Links</Label>
-        <ButtonsContainer>
-          <LinkButton onPress={() => Linking.openURL(owner.html_url)}>
-            <TextButton>GitHub</TextButton>
-          </LinkButton>
-
-          {owner.blog && (
-            <LinkButton onPress={() => Linking.openURL(owner.blog)}>
-              <TextButton>Blog</TextButton>
-            </LinkButton>
-          )}
-        </ButtonsContainer>
       </Content>
     </Container>
   );

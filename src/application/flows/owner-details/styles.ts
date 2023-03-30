@@ -2,7 +2,8 @@ import Layout from "@components/layout";
 import styled from "styled-components/native";
 import ProfilePicture from "@components/profilePicture";
 import Text from "@components/base/text";
-import Button from "@components/base/button";
+import CustomButton from "@components/base/button";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 type LabelProps = {
   light?: boolean;
@@ -65,13 +66,13 @@ export const Image = styled(ProfilePicture).attrs(({ theme }) => ({
 `;
 
 export const ButtonsContainer = styled.View`
-flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-top: 8px;
   flex-direction: row;
   align-items: center;
 `;
 
-export const LinkButton = styled(Button)`
+export const LinkButton = styled(CustomButton)`
   margin: 0px 8px 8px 0px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.BLUE};
@@ -88,3 +89,13 @@ export const Load = styled.ActivityIndicator.attrs(({ theme }) => ({
 }))`
   margin-left: 8px;
 `;
+
+export const Button = styled(CustomButton)`
+  align-self: flex-end;
+`;
+
+export const TrashIcon = styled(FontAwesome5).attrs(({ theme }) => ({
+  size: 15,
+  name: "trash",
+  color: theme.colors.RED,
+}))``;
