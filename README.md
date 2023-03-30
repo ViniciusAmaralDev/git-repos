@@ -35,13 +35,13 @@ npx expo start
 
 iOS:
 ```BASH
-yarn android
-ou
 yarn ios
+ou
+npm run ios
 ```
 Android:
 ```BASH
-npm run android
+yarn android
 ou
-npm run ios
+npm run android
 ```
