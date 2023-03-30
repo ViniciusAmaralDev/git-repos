@@ -4,6 +4,7 @@ import {
   Container,
   HeaderTitle,
   Content,
+  ButtonContainer,
   ArrowButton,
   ArrowLeftIcon,
 } from "./styles";
@@ -23,9 +24,13 @@ const Header = ({ title, leftContainer, rightContainer, goBack }: Props) => {
       {leftContainer ? (
         <Content>{leftContainer}</Content>
       ) : (
-        <ArrowButton onPress={() => (goBack ? goBack() : navigation.goBack())}>
-          <ArrowLeftIcon />
-        </ArrowButton>
+        <ButtonContainer>
+          <ArrowButton
+            onPress={() => (goBack ? goBack() : navigation.goBack())}
+          >
+            <ArrowLeftIcon />
+          </ArrowButton>
+        </ButtonContainer>
       )}
 
       <HeaderTitle>{title}</HeaderTitle>

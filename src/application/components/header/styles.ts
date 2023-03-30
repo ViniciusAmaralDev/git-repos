@@ -19,8 +19,12 @@ export const HeaderTitle = styled(Text)`
   font-family: ${({ theme }) => theme.fonts.MEDIUM};
 `;
 
-export const ArrowButton = styled(Button)`
+export const ButtonContainer = styled.View`
   flex: 1;
+`;
+
+export const ArrowButton = styled(Button)`
+  align-self: flex-start;
 `;
 
 export const ArrowLeftIcon = styled(AntDesign).attrs(({ theme }) => ({
