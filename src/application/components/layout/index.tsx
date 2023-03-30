@@ -8,14 +8,13 @@ type Props = ScrollViewProps & {
 };
 
 const Layout = ({ header, children, scrollEnabled, ...rest }: Props) => {
-  const { top, bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
 
   const isIosPlatform = Platform.OS === "ios";
   const paddingTop = isIosPlatform ? top : 0;
-  const paddingBottom = isIosPlatform ? bottom : 0;
 
   return (
-    <Container paddingTop={paddingTop} paddingBottom={paddingBottom}>
+    <Container paddingTop={paddingTop}>
       {header && <>{header}</>}
       {scrollEnabled ? (
         <ScrollView showsVerticalScrollIndicator={false} {...rest}>
