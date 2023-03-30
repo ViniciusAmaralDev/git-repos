@@ -35,5 +35,7 @@ export type Owner = {
 
 export type OwnerContext = {
   owners: Owner[];
+  deleteAllOwners: () => Promise<void>;
   getOwner: (owner: string) => Promise<void>;
+  deleteOwner: (id: number) => Promise<void>;
 };
