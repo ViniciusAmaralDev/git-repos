@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "watchman watch-del-all && clear && expo start --reset-cache",
+    "start": "watchman watch-del-all && clear && npx react-native start --reset-cache",
     "android": "clear && ENVFILE=.env npx react-native run-android",
     "ios": "clear && ENVFILE=.env npx react-native run-ios",
     "web": "expo start --web"
