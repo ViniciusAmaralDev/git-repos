@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "start": "watchman watch-del-all && clear && expo start --reset-cache",
+    "android": "clear && ENVFILE=.env npx react-native run-android",
+    "ios": "clear && ENVFILE=.env npx react-native run-ios",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.14",
     "babel-plugin-module-resolver": "^5.0.0",
+    "react-native-dotenv": "^3.4.9",
     "typescript": "^5.1.3"
   },
   "private": true
