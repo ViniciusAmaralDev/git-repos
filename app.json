@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "git-repos",
+    "name": "Git Repos",
     "slug": "git-repos",
     "version": "1.0.0",
     "assetBundlePatterns": ["**/*"],
