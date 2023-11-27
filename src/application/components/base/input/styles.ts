@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 export const TextInput = styled.TextInput.attrs(({ theme }) => ({
-  placeholderTextColor: theme.colors.placeholder,
+  placeholderTextColor: theme.colors.text,
 }))`
   flex: 1;
   font-size: 14px;

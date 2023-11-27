@@ -14,10 +14,10 @@ export const Container = styled.View`
 
 export const SearchIcon = styled(FontAwesome).attrs(({ theme }) => ({
   size: 20,
-  color: theme.colors.placeholder,
+  color: theme.colors.text,
 }))``;
 
 export const CloseIcon = styled(AntDesign).attrs(({ theme }) => ({
   size: 20,
-  color: theme.colors.placeholder,
+  color: theme.colors.text,
 }))``;
