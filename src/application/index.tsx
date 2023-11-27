@@ -1,11 +1,11 @@
 import React from "react";
 import Providers from "./providers";
-import { Home } from "./screens/home";
+import MainNavigator from "./routes";
 
 export default function App() {
   return (
     <Providers>
-      <Home />
+      <MainNavigator />
     </Providers>
   );
 }
