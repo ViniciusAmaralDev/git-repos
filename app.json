@@ -3,9 +3,8 @@
     "name": "git-repos",
     "slug": "git-repos",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
+    "userInterfaceStyle": "automatic",
     "android": {
       "package": "com.viniciusamaraldev.gitrepos"
     },
