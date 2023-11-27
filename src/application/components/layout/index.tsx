@@ -25,7 +25,7 @@ export const Layout = ({
 
   return (
     <Container paddingTop={paddingTop}>
-      <StatusBar style="dark" backgroundColor={theme.colors.primary} />
+      <StatusBar style="auto" />
 
       {header && <HeaderContainer>{header}</HeaderContainer>}
 
