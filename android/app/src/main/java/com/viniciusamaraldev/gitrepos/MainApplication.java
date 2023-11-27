@@ -1,4 +1,4 @@
-package com.gitrepos;
+package com.viniciusamaraldev.gitrepos;
 
 import android.app.Application;
 import android.content.res.Configuration;

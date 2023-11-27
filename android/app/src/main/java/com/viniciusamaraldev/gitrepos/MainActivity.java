@@ -1,4 +1,4 @@
-package com.gitrepos;
+package com.viniciusamaraldev.gitrepos;
 
 import android.os.Build;
 import android.os.Bundle;
