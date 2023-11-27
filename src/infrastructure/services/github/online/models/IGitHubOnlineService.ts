@@ -3,7 +3,7 @@ import { IGetReposOnlineRequest } from "./request/IGetReposOnlineRequest";
 import { IGetReposOnlineResponse } from "./response/IGetReposOnlineResponse";
 
 export interface IGitHubOnlineService {
-  getRepos: (
+  getRepository: (
     value: IGetReposOnlineRequest
-  ) => Promise<AxiosResponse<IGetReposOnlineResponse>>;
+  ) => Promise<AxiosResponse<IGetReposOnlineResponse[]>>;
 }
