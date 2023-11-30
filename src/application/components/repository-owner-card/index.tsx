@@ -16,13 +16,21 @@ import {
 interface RepositoryOwnerCardProps {
   data: IRepositoryOwner;
   navigate?: (owner: string) => void;
+  onDelete?: (owner: string) => void;
+  onFavorite?: (owner: string) => void;
 }
 
 export const RepositoryOwnerCard = ({
   data,
   navigate,
+  onDelete,
+  onFavorite,
 }: RepositoryOwnerCardProps) => {
   const { theme } = useTheme();
+  const iconName = data.isFavorite ? "star" : "staro";
+  const iconColor = data.isFavorite
+    ? theme.colors.warning
+    : theme.colors.border;
 
   return (
     <Container onPress={() => navigate(data.owner)}>
@@ -36,11 +44,20 @@ export const RepositoryOwnerCard = ({
       </VerticalContainer>
 
       <ButtonsContainer>
-        <IconButton
-          icon={<StarIcon name="staro" color={theme.colors.border} />}
-          onPress={() => {}}
-        />
-        <IconButton icon={<TrashIcon />} onPress={() => {}} />
+        {!!onFavorite && (
+          <IconButton
+            icon={<StarIcon name={iconName} color={iconColor} />}
+            onPress={() => onFavorite(data.owner)}
+          />
+        )}
+
+        {!!onDelete && (
+          <IconButton
+            icon={<TrashIcon />}
+            onPress={() => onDelete(data.owner)}
+          />
+        )}
+
         <ArrowIcon />
       </ButtonsContainer>
     </Container>

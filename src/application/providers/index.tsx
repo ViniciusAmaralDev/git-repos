@@ -11,8 +11,8 @@ export default function Providers({ children }: PropsWithChildren) {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <ToastProvider
-          duration={5000}
-          placement="bottom"
+          duration={3000}
+          placement="center"
           animationDuration={250}
           animationType="slide-in"
         >
