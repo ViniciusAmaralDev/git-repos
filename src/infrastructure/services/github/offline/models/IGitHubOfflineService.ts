@@ -1,7 +1,7 @@
-import { IRepository } from "@/application/models/IRepository";
+import { IRepositoryOwner } from "@/application/models/IRepositoryOwner";
 
 export interface IGitHubOfflineService {
-  read: () => IRepository[];
-  delete: (id: number) => void;
-  save: (repositories: IRepository[]) => void;
+  read: () => IRepositoryOwner[];
+  delete: (owner: string) => void;
+  save: (repositories: IRepositoryOwner[]) => void;
 }

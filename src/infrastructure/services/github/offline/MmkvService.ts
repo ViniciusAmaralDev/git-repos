@@ -1,18 +1,20 @@
 import { mmkvDatabase } from "@/infrastructure/database/mmkv";
-import { IRepository } from "@/application/models/IRepository";
+import { IRepositoryOwner } from "@/application/models/IRepositoryOwner";
 import { IGitHubOfflineService } from "./models/IGitHubOfflineService";
 
-const saveRepositories = (repositories: IRepository[]) => {
-  mmkvDatabase.set("repositories", JSON.stringify(repositories));
+const saveRepositories = (values: IRepositoryOwner[]) => {
+  const repositories = readRepositories();
+  const formattedRepositories = JSON.stringify([...repositories, ...values]);
+  mmkvDatabase.set("repositories", formattedRepositories);
 };
 
-const readRepositories = (): IRepository[] => {
+const readRepositories = (): IRepositoryOwner[] => {
   return JSON.parse(mmkvDatabase.getString("repositories") ?? "[]");
 };
 
-const deleteRepository = (id: number) => {
+const deleteRepository = (owner: string) => {
   const repositories = readRepositories();
-  saveRepositories(repositories.filter((repo) => repo.id !== id));
+  saveRepositories(repositories.filter((repo) => repo.owner !== owner));
 };
 
 export const mmkvService: IGitHubOfflineService = {
