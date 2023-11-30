@@ -1,11 +1,17 @@
 import { mmkvDatabase } from "@/infrastructure/database/mmkv";
-import { IRepositoryOwner } from "@/application/models/IRepositoryOwner";
 import { IGitHubOfflineService } from "./models/IGitHubOfflineService";
 
-const saveRepositories = (values: IRepositoryOwner[]) => {
+// MODELS
+import { IRepositoryOwner } from "@/application/models/IRepositoryOwner";
+import { IUpdateRepositoryOffline } from "./models/IUpdateRepositoryOffline";
+
+const addRepository = (value: IRepositoryOwner) => {
   const repositories = readRepositories();
-  const formattedRepositories = JSON.stringify([...repositories, ...values]);
-  mmkvDatabase.set("repositories", formattedRepositories);
+  mmkvDatabase.set("repositories", JSON.stringify([...repositories, value]));
+};
+
+const saveRepositories = (values: IRepositoryOwner[]) => {
+  mmkvDatabase.set("repositories", JSON.stringify(values));
 };
 
 const readRepositories = (): IRepositoryOwner[] => {
@@ -13,12 +19,25 @@ const readRepositories = (): IRepositoryOwner[] => {
 };
 
 const deleteRepository = (owner: string) => {
-  const repositories = readRepositories();
-  saveRepositories(repositories.filter((repo) => repo.owner !== owner));
+  saveRepositories(readRepositories().filter((repo) => repo.owner !== owner));
+};
+
+const updateRepository = ({
+  owner,
+  repositories,
+}: IUpdateRepositoryOffline) => {
+  readRepositories()
+    .map((value) => ({
+      ...value,
+      repositories: value.owner === owner ? repositories : value.repositories,
+    }))
+    .map((value) => saveRepositories(value));
 };
 
 export const mmkvService: IGitHubOfflineService = {
+  add: addRepository,
   save: saveRepositories,
   read: readRepositories,
   delete: deleteRepository,
+  update: updateRepository,
 };
