@@ -1,6 +1,6 @@
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import { BottomTabParamList } from "./BottomTabParamList";
 import {
   createBottomTabNavigator,
@@ -8,7 +8,7 @@ import {
 } from "@react-navigation/bottom-tabs";
 
 // SCREENS
-import { Home } from "../screens/home";
+import { Home } from "../../screens/home";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
