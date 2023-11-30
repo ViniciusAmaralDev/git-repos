@@ -1,7 +1,5 @@
 import { onlineManager } from "react-query";
-import { IRepository } from "../models/IRepository";
 import NetInfo from "@react-native-community/netinfo";
-import { IRepositoryContext } from "../models/IRepositoryContext";
 import { gitHubOfflineService } from "@/infrastructure/services/github/offline";
 import React, {
   useState,
@@ -10,6 +8,10 @@ import React, {
   PropsWithChildren,
 } from "react";
 
+// MODELS
+import { IRepositoryOwner } from "../models/IRepositoryOwner";
+import { IRepositoryContext } from "../models/IRepositoryContext";
+
 onlineManager.setEventListener((setOnline) =>
   NetInfo.addEventListener(({ isConnected }) => setOnline(isConnected))
 );
@@ -17,7 +19,7 @@ onlineManager.setEventListener((setOnline) =>
 export const RepositoryContext = createContext({} as IRepositoryContext);
 
 export const RepositoryProvider = ({ children }: PropsWithChildren) => {
-  const [repositories, setRepositories] = useState<IRepository[]>([]);
+  const [repositories, setRepositories] = useState<IRepositoryOwner[]>([]);
 
   useEffect(() => {
     setRepositories(gitHubOfflineService.read());
