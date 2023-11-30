@@ -9,6 +9,7 @@ import {
 
 // SCREENS
 import { Home } from "../../screens/home";
+import { Settings } from "@/application/screens/settings";
 import { FavoriteRepositories } from "@/application/screens/favorite-repositories";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -51,7 +52,7 @@ export default function BottomTabNavigator() {
 
       <BottomTab.Screen
         name="Settings"
-        component={Home}
+        component={Settings}
         options={{
           tabBarIcon: ({ size, color }) => (
             <AntDesign name="setting" size={size} color={color} />

@@ -13,20 +13,29 @@ import { useNavigation } from "@react-navigation/native";
 interface HeaderProps extends ViewProps {
   title: string;
   right?: ReactNode;
+  hideArrowButton?: boolean;
   goBack?: () => void;
 }
 
-export const Header = ({ title, right, goBack, ...rest }: HeaderProps) => {
+export const Header = ({
+  title,
+  right,
+  hideArrowButton,
+  goBack,
+  ...rest
+}: HeaderProps) => {
   const navigation = useNavigation();
   const handleGoBack = goBack ?? navigation.goBack;
 
   return (
     <Container {...rest}>
       <HorizontalContainer>
-        <IconButton
-          icon={<ArrowIcon name="arrowleft" />}
-          onPress={handleGoBack}
-        />
+        {!hideArrowButton && (
+          <IconButton
+            icon={<ArrowIcon name="arrowleft" />}
+            onPress={handleGoBack}
+          />
+        )}
         <Title>{title}</Title>
       </HorizontalContainer>
 
