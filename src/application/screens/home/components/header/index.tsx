@@ -11,12 +11,13 @@ interface HeaderProps {
     value: string;
     ref: React.MutableRefObject<TextInput>;
     reset: () => void;
+    onSearch: () => void;
     onChangeText: React.Dispatch<React.SetStateAction<string>>;
   };
 }
 
 export const Header = ({ searchBarProps }: HeaderProps) => {
-  const { ref, value, reset, onChangeText } = searchBarProps;
+  const { ref, value, reset, onSearch, onChangeText } = searchBarProps;
 
   return (
     <Container>
@@ -30,6 +31,7 @@ export const Header = ({ searchBarProps }: HeaderProps) => {
         value={value}
         placeholder="Pesquisar"
         clear={reset}
+        onSearch={onSearch}
         onChangeText={onChangeText}
       />
     </Container>
