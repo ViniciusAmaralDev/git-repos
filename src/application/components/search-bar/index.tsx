@@ -8,7 +8,7 @@ import { useTheme } from "@/application/contexts/ThemeContext";
 interface SearchBarProps extends TextInputProps {
   containerStyle?: StyleProp<ViewStyle>;
   clear: () => void;
-  onSearch: () => void;
+  onSearch?: () => void;
 }
 
 export const SearchBar = forwardRef<any, SearchBarProps>(
@@ -26,11 +26,13 @@ export const SearchBar = forwardRef<any, SearchBarProps>(
 
         <Input ref={ref} {...rest} />
 
-        <SearchButton
-          isActive={!isEmpty}
-          icon={<SearchIcon name="search" color={iconColor} />}
-          onPress={onSearch}
-        />
+        {!!onSearch && (
+          <SearchButton
+            isActive={!isEmpty}
+            icon={<SearchIcon name="search" color={iconColor} />}
+            onPress={onSearch}
+          />
+        )}
       </Container>
     );
   }
