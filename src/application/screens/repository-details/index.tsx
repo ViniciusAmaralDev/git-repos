@@ -14,10 +14,12 @@ import { RepositoryList } from "@/application/components/repository-list";
 import { RepositoryCard } from "@/application/components/repository-card";
 import { IRepository } from "@/application/models/IRepository";
 import { Linking, Text } from "react-native";
+import { useTranslation } from "react-i18next";
 
 export const RepositoryDetails = ({
   route,
 }: StackRootProps<"RepositoryDetails">) => {
+  const { t } = useTranslation();
   const { repositories } = useRepository();
 
   const repository = repositories.find(
@@ -37,10 +39,10 @@ export const RepositoryDetails = ({
           <Label>{repository.owner}</Label>
 
           <Label secondary>
-            {repository.repositories.length.toString()} repositórios
+            {repository.repositories.length.toString() + t("repositories")}
           </Label>
 
-          <LinkButton onPress={openGitHubProfile}>Perfil do Github</LinkButton>
+          <LinkButton onPress={openGitHubProfile}>{t('github profile')}</LinkButton>
         </VerticalContainer>
       </HorizontalContainer>
 

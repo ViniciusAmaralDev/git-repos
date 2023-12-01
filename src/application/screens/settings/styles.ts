@@ -8,6 +8,7 @@ export const Container = styled(Layout).attrs({
 `;
 
 export const HorizontalContainer = styled.View`
+  gap: 16px;
   padding: 16px 0px;
   flex-direction: row;
   align-items: center;

@@ -1,12 +1,13 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
 import { Container } from "./styles";
-import { Header } from "@/application/components/header-app";
 import { TextInput } from "react-native";
-import { RepositoryList } from "@/application/components/repository-list";
 import { useRepository } from "@/application/hooks/useRepository";
-import { RepositoryOwnerCard } from "@/application/components/repository-owner-card";
-import { BottomTabRootProps } from "@/application/routes/bottom-tab-navigator/BottomTabRootProps";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { StackRootProps } from "@/application/routes/stack-navigator/StackRootProps";
+
+// COMPONENTS
+import { Header } from "@/application/components/header-app";
+import { RepositoryList } from "@/application/components/repository-list";
+import { RepositoryOwnerCard } from "@/application/components/repository-owner-card";
 
 export const FavoriteRepositories = ({
   navigation,

@@ -5,6 +5,7 @@ import { Container, HorizontalContainer, Icon, Title } from "./styles";
 // COMPONENTS
 import { images } from "@/application/assets/images";
 import { SearchBar } from "@/application/components/search-bar";
+import { useTranslation } from "react-i18next";
 
 interface HeaderProps {
   searchBarProps: {
@@ -17,6 +18,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ searchBarProps }: HeaderProps) => {
+  const { t } = useTranslation();
   const { ref, value, reset, onSearch, onChangeText } = searchBarProps;
 
   return (
@@ -29,7 +31,7 @@ export const Header = ({ searchBarProps }: HeaderProps) => {
       <SearchBar
         ref={ref}
         value={value}
-        placeholder="Pesquisar"
+        placeholder={t("search")}
         clear={reset}
         onSearch={onSearch}
         onChangeText={onChangeText}

@@ -19,9 +19,7 @@ export const RepositoryCard = ({ data }: RepositoryCardProps) => {
     <Container onPress={() => Linking.openURL(data.html_url)}>
       <VerticalContainer>
         <Label>{data.name}</Label>
-        {data.description && (
-          <Label secondary>{data.description} repositórios</Label>
-        )}
+        {data.description && <Label secondary>{data.description}</Label>}
       </VerticalContainer>
 
       <ButtonsContainer>
