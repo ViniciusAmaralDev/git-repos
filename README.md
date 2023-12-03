@@ -1,12 +1,12 @@
 # Git Repos
 
-Application in react native to search github repositories and list them. You can also favorite your repositories and view them on a specific screen.
+React native application to search github repositories and list them. You can also favorite your repositories and view them on a specific screen.
 
-The application saves data locally, persisting even after closing and opening the application again.
+The application saves data locally, persisting even after closing.
 
 The application also has translation into 3 languages: English, Portuguese and Spanish.
 
-You can also switch between light and dark themes whenever you want.
+You can also switch between light, dark themes, or follow the device's default theme.
 
 ---
 
