@@ -44,17 +44,16 @@ export const useRepository = () => {
     async (user: string) => {
       try {
         Keyboard.dismiss();
-
-        if (!isConnected) {
-          toast.show(t("no internet connection"));
-          return;
-        }
+        if (!isConnected) throw { status: 502 };
 
         const { data } = await gitHubOnlineService.getRepository({ user });
-        const response = { owner: data[0].owner.login, repositories: data };
-        return response as IRepositoryOwner;
+        return { owner: data[0].owner.login, repositories: data };
       } catch (error) {
-        toast.show(t("user not found"));
+        const errors = {
+          502: "no internet connection",
+        };
+
+        toast.show(t(errors[error?.status] ?? "user not found"));
       }
     },
     [repositories]
