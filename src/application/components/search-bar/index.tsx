@@ -2,21 +2,34 @@ import { Input } from "../base/input";
 import React, { forwardRef } from "react";
 import { IconButton } from "../icon-button";
 import { useTheme } from "@/application/contexts/ThemeContext";
-import { StyleProp, TextInputProps, ViewStyle } from "react-native";
+import {
+  ActivityIndicator,
+  StyleProp,
+  TextInputProps,
+  ViewStyle,
+} from "react-native";
 import { CloseIcon, Container, SearchButton, SearchIcon } from "./styles";
 
 interface SearchBarProps extends TextInputProps {
+  isLoading?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
   clear: () => void;
   onSearch?: () => void;
 }
 
 export const SearchBar = forwardRef<any, SearchBarProps>(
-  ({ value, containerStyle, clear, onSearch, ...rest }, ref) => {
-    const { theme } = useTheme();
+  ({ value, isLoading, containerStyle, clear, onSearch, ...rest }, ref) => {
+    const { theme, themeType } = useTheme();
+
+    const isDarkMode = themeType === "dark";
+
     const isEmpty = value?.length === 0;
 
-    const iconColor = !isEmpty ? theme.colors.text : theme.colors.border;
+    const iconColor = !isEmpty
+      ? isDarkMode
+        ? theme.colors.text
+        : theme.colors.primary
+      : theme.colors.border;
 
     return (
       <Container style={containerStyle}>
@@ -29,8 +42,14 @@ export const SearchBar = forwardRef<any, SearchBarProps>(
         {!!onSearch && (
           <SearchButton
             isActive={!isEmpty}
-            icon={<SearchIcon name="search" color={iconColor} />}
-            onPress={onSearch}
+            icon={
+              isLoading ? (
+                <ActivityIndicator size="small" color={iconColor} />
+              ) : (
+                <SearchIcon name="search" color={iconColor} />
+              )
+            }
+            onPress={isLoading ? undefined : onSearch}
           />
         )}
       </Container>

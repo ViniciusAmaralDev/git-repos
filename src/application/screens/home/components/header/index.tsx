@@ -11,6 +11,7 @@ import { useTheme } from "@/application/contexts/ThemeContext";
 interface HeaderProps {
   searchBarProps: {
     value: string;
+    isLoading?: boolean;
     ref: React.MutableRefObject<TextInput>;
     reset: () => void;
     onSearch: () => void;
@@ -21,7 +22,9 @@ interface HeaderProps {
 export const Header = ({ searchBarProps }: HeaderProps) => {
   const { t } = useTranslation();
   const { themeType } = useTheme();
-  const { ref, value, reset, onSearch, onChangeText } = searchBarProps;
+
+  const { ref, value, isLoading, reset, onSearch, onChangeText } =
+    searchBarProps;
 
   const icon =
     themeType === "dark" ? images.appIcon.light : images.appIcon.dark;
@@ -36,6 +39,7 @@ export const Header = ({ searchBarProps }: HeaderProps) => {
       <SearchBar
         ref={ref}
         value={value}
+        isLoading={isLoading}
         placeholder={t("search")}
         clear={reset}
         onSearch={onSearch}

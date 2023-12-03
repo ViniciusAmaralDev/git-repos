@@ -45,6 +45,7 @@ export const Home = ({ navigation }: StackRootProps<"RepositoryDetails">) => {
   const searchBarConfig = {
     ref: searchBarRef,
     value: searchValue,
+    isLoading: mutation.isLoading,
     onSearch: searchRepository,
     reset: resetSearchValueInput,
     onChangeText: setSearchValue,
