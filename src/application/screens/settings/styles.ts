@@ -1,10 +1,15 @@
 import styled from "styled-components/native";
 import { Layout } from "@/application/components/layout";
+import { Text } from "@/application/components/base/text";
 
 export const Container = styled(Layout).attrs({
   paddingTopEnabled: true,
 })`
   padding: 16px;
+`;
+
+export const Label = styled(Text)`
+  flex: 1;
 `;
 
 export const HorizontalContainer = styled.View`

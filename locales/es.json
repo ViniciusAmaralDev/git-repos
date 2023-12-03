@@ -10,5 +10,9 @@
   "english": "Inglés",
   "portuguese": "Portugués",
   "spanish": "Español",
-  "settings": "Ajustes"
+  "settings": "Ajustes",
+  "theme": "Tema",
+  "light":"Claro",
+  "dark":"Escuro",
+  "system":"Sistema"
 }

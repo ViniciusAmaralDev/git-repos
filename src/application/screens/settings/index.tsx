@@ -1,22 +1,23 @@
 import React from "react";
-import i18n from "../../../../locales";
+import { Container, HorizontalContainer, Label } from "./styles";
+import { i18next } from "@/application/contexts/AppSettingsContext";
+
+// HOOKS
 import { useTranslation } from "react-i18next";
-import { Container, HorizontalContainer } from "./styles";
 import { useTheme } from "@/application/contexts/ThemeContext";
+import { useAppSettings } from "@/application/hooks/useAppSettings";
 
 // COMPONENTS
 import { Header } from "@/application/components/header";
-import { Text } from "@/application/components/base/text";
 import { Divider } from "@/application/components/divider";
-import { SwitchButton } from "@/application/components/switch-button";
 import { SelectInput } from "@/application/components/select-input";
-import { languageService } from "@/infrastructure/services/language";
+import { EAppTheme } from "@/infrastructure/services/app-settings/enums/EAppTheme";
+import { ELanguage } from "@/infrastructure/services/app-settings/enums/ELanguage";
 
 export const Settings = () => {
   const { t } = useTranslation();
-
+  const { changeLanguage } = useAppSettings();
   const { themeType, toggleTheme } = useTheme();
-  const isDarkMode = themeType === "dark";
 
   const languages = [
     { label: t("english"), value: "en" },
@@ -28,28 +29,39 @@ export const Settings = () => {
     en: languages[0],
     pt: languages[1],
     es: languages[2],
-  }[i18n.language];
+  }[i18next.language];
 
-  const changeLanguage = (value: string) => {
-    i18n.changeLanguage(value);
-    languageService.set(value);
+  const themeTypes = [
+    { label: t("dark"), value: EAppTheme.DARK },
+    { label: t("light"), value: EAppTheme.LIGHT },
+    { label: t("system"), value: EAppTheme.SYSTEM },
+  ];
+
+  const selectedTheme = {
+    [EAppTheme.DARK]: { label: t(EAppTheme.DARK), value: EAppTheme.DARK },
+    [EAppTheme.LIGHT]: { label: t(EAppTheme.LIGHT), value: EAppTheme.LIGHT },
+    [EAppTheme.SYSTEM]: { label: t(EAppTheme.SYSTEM), value: EAppTheme.SYSTEM },
   };
 
   return (
     <Container header={<Header hideArrowButton title={t("settings")} />}>
       <HorizontalContainer>
-        <Text>{t("dark mode")}</Text>
-        <SwitchButton isActive={isDarkMode} onPress={toggleTheme} />
+        <Label>{t("theme")}</Label>
+        <SelectInput
+          data={themeTypes}
+          value={selectedTheme[themeType]}
+          onChange={({ value }) => toggleTheme(value as EAppTheme)}
+        />
       </HorizontalContainer>
 
       <Divider />
 
       <HorizontalContainer>
-        <Text>{t("app language")}</Text>
+        <Label>{t("app language")}</Label>
         <SelectInput
           data={languages}
           value={selectedLanguage}
-          onChange={({ value }) => changeLanguage(value)}
+          onChange={({ value }) => changeLanguage(value as ELanguage)}
         />
       </HorizontalContainer>
     </Container>

@@ -1,8 +1,8 @@
 import { lightTheme } from "../styles/LightTheme";
-import { ThemeType } from "../contexts/ThemeContext";
+import { EAppTheme } from "@/infrastructure/services/app-settings/enums/EAppTheme";
 
 export interface IThemeContext {
+  themeType: EAppTheme;
   theme: typeof lightTheme;
-  themeType: ThemeType;
-  toggleTheme: () => void;
+  toggleTheme: (theme: EAppTheme) => void;
 }
