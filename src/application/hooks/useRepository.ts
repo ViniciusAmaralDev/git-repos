@@ -3,6 +3,7 @@ import { IRepositoryOwner } from "../models/IRepositoryOwner";
 import { RepositoryContext } from "../contexts/RepositoryContext";
 
 // HOOKS
+import { useTranslation } from "react-i18next";
 import { useCallback, useContext } from "react";
 import { useToast } from "react-native-toast-notifications";
 import { useNetInfo } from "@react-native-community/netinfo";
@@ -13,6 +14,7 @@ import { gitHubOnlineService } from "@/infrastructure/services/github/online";
 
 export const useRepository = () => {
   const toast = useToast();
+  const { t } = useTranslation();
   const { isConnected } = useNetInfo();
   const { repositories, setRepositories } = useContext(RepositoryContext);
 
@@ -44,7 +46,7 @@ export const useRepository = () => {
         Keyboard.dismiss();
 
         if (!isConnected) {
-          toast.show("Sem conexão com internet!");
+          toast.show(t("no internet connection"));
           return;
         }
 
@@ -52,7 +54,7 @@ export const useRepository = () => {
         const response = { owner: data[0].owner.login, repositories: data };
         return response as IRepositoryOwner;
       } catch (error) {
-        toast.show("Usuário não encontrado!");
+        toast.show(t("user not found"));
       }
     },
     [repositories]
@@ -69,13 +71,13 @@ export const useRepository = () => {
   );
 
   const handleFavoriteRepository = (owner: string) => {
-    setRepositories((values) =>
-      values.map((value) => ({
-        ...value,
-        isFavorite:
-          value.owner === owner ? !value.isFavorite : value.isFavorite,
-      }))
-    );
+    const updated = repositories.map((value) => ({
+      ...value,
+      isFavorite: value.owner === owner ? !value.isFavorite : value.isFavorite,
+    }));
+
+    setRepositories(updated);
+    gitHubOfflineService.save(updated);
   };
 
   return {
