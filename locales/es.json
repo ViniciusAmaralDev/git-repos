@@ -4,5 +4,7 @@
   "github profile": "Perfil de Github",
   "dark mode": "Modo oscuro",
   "app language": "Idioma de la aplicación",
-  "placeholder select input": "Seleccionar"
+  "placeholder select input": "Seleccionar",
+  "no internet connection": "¡Sin conexión a Internet!",
+  "user not found": "¡Usuario no encontrado!"
 }
