@@ -6,5 +6,8 @@
   "app language": "Idioma do app",
   "placeholder select input": "Selecionar",
   "no internet connection": "Sem conexão com internet!",
-  "user not found": "Usuário não encontrado!"
+  "user not found": "Usuário não encontrado!",
+  "english": "Inglês",
+  "portuguese": "Português",
+  "spanish": "Espanhol"
 }

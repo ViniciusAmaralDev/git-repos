@@ -3,13 +3,18 @@
     "name": "Git Repos",
     "slug": "git-repos",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "userInterfaceStyle": "automatic",
     "android": {
       "package": "com.viniciusamaraldev.gitrepos"
     },
     "ios": {
       "bundleIdentifier": "com.viniciusamaraldev.gitrepos"
-    }
+    },
+    "plugins": [
+      "expo-localization"
+    ]
   }
 }

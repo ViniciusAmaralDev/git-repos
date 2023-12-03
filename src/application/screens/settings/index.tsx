@@ -10,6 +10,7 @@ import { Text } from "@/application/components/base/text";
 import { Divider } from "@/application/components/divider";
 import { SwitchButton } from "@/application/components/switch-button";
 import { SelectInput } from "@/application/components/select-input";
+import { languageService } from "@/infrastructure/services/language";
 
 export const Settings = () => {
   const { t } = useTranslation();
@@ -17,11 +18,22 @@ export const Settings = () => {
   const { themeType, toggleTheme } = useTheme();
   const isDarkMode = themeType === "dark";
 
+  const languages = [
+    { label: t("english"), value: "en" },
+    { label: t("portuguese"), value: "pt" },
+    { label: t("spanish"), value: "es" },
+  ];
+
   const selectedLanguage = {
-    en: { label: "Inglês", value: "en" },
-    es: { label: "Espanhol", value: "es" },
-    pt: { label: "Português", value: "pt" },
+    en: languages[0],
+    pt: languages[1],
+    es: languages[2],
   }[i18n.language];
+
+  const changeLanguage = (value: string) => {
+    i18n.changeLanguage(value);
+    languageService.set(value);
+  };
 
   return (
     <Container header={<Header hideArrowButton title="Configurações" />}>
@@ -35,13 +47,9 @@ export const Settings = () => {
       <HorizontalContainer>
         <Text>{t("app language")}</Text>
         <SelectInput
-          data={[
-            { label: "Inglês", value: "en" },
-            { label: "Português", value: "pt" },
-            { label: "Espanhol", value: "es" },
-          ]}
+          data={languages}
           value={selectedLanguage}
-          onChange={({ value }) => i18n.changeLanguage(value)}
+          onChange={({ value }) => changeLanguage(value)}
         />
       </HorizontalContainer>
     </Container>

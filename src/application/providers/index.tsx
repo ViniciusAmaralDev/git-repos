@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { LanguageProvider } from "../contexts/LanguageContext";
 import { ToastProvider } from "react-native-toast-notifications";
 import { RepositoryProvider } from "../contexts/RepositoryContext";
 
@@ -16,7 +17,9 @@ export default function Providers({ children }: PropsWithChildren) {
           animationDuration={250}
           animationType="slide-in"
         >
-          <RepositoryProvider>{children}</RepositoryProvider>
+          <LanguageProvider>
+            <RepositoryProvider>{children}</RepositoryProvider>
+          </LanguageProvider>
         </ToastProvider>
       </ThemeProvider>
     </QueryClientProvider>
