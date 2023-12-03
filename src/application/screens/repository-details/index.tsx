@@ -15,12 +15,16 @@ import { RepositoryCard } from "@/application/components/repository-card";
 import { IRepository } from "@/application/models/IRepository";
 import { Linking, Text } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/application/contexts/ThemeContext";
 
 export const RepositoryDetails = ({
   route,
 }: StackRootProps<"RepositoryDetails">) => {
   const { t } = useTranslation();
+  const { themeType } = useTheme();
   const { repositories } = useRepository();
+
+  const isDarkMode = themeType === "dark";
 
   const repository = repositories.find(
     (item) => item.owner === route.params.owner
@@ -36,13 +40,15 @@ export const RepositoryDetails = ({
         <ProfileImage uri={repository.repositories[0].owner.avatar_url} />
 
         <VerticalContainer>
-          <Label>{repository.owner}</Label>
+          <Label isDarkMode={isDarkMode}>{repository.owner}</Label>
 
-          <Label secondary>
+          <Label secondary isDarkMode={isDarkMode}>
             {repository.repositories.length.toString() + t("repositories")}
           </Label>
 
-          <LinkButton onPress={openGitHubProfile}>{t('github profile')}</LinkButton>
+          <LinkButton onPress={openGitHubProfile}>
+            {t("github profile")}
+          </LinkButton>
         </VerticalContainer>
       </HorizontalContainer>
 

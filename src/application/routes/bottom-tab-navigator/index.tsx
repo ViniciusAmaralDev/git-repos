@@ -1,5 +1,5 @@
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../contexts/ThemeContext";
 import { BottomTabParamList } from "./BottomTabParamList";
 import {
@@ -21,10 +21,10 @@ export default function BottomTabNavigator() {
     headerShown: false,
     tabBarShowLabel: false,
     tabBarActiveTintColor: theme.colors.secondary,
-    tabBarInactiveTintColor: theme.colors.border,
+    tabBarInactiveTintColor: theme.colors.placeholder,
     tabBarStyle: {
       borderTopWidth: 0,
-      backgroundColor: theme.colors.placeholder,
+      backgroundColor: theme.colors.border,
     },
   };
 
@@ -34,8 +34,12 @@ export default function BottomTabNavigator() {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <AntDesign name="home" size={size} color={color} />
+          tabBarIcon: ({ size, color, focused }) => (
+            <Ionicons
+              name={focused ? "home" : "home-outline"}
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
@@ -44,8 +48,12 @@ export default function BottomTabNavigator() {
         name="Favorites"
         component={FavoriteRepositories}
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <AntDesign name="staro" size={size} color={color} />
+          tabBarIcon: ({ size, color, focused }) => (
+            <AntDesign
+              name={focused ? "star" : "staro"}
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
@@ -54,8 +62,12 @@ export default function BottomTabNavigator() {
         name="Settings"
         component={Settings}
         options={{
-          tabBarIcon: ({ size, color }) => (
-            <AntDesign name="setting" size={size} color={color} />
+          tabBarIcon: ({ size, color, focused }) => (
+            <Ionicons
+              name={focused ? "settings" : "settings-outline"}
+              size={size}
+              color={color}
+            />
           ),
         }}
       />

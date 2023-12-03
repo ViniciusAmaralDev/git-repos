@@ -6,6 +6,7 @@ import { Container, HorizontalContainer, Icon, Title } from "./styles";
 import { images } from "@/application/assets/images";
 import { SearchBar } from "@/application/components/search-bar";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/application/contexts/ThemeContext";
 
 interface HeaderProps {
   searchBarProps: {
@@ -19,12 +20,16 @@ interface HeaderProps {
 
 export const Header = ({ searchBarProps }: HeaderProps) => {
   const { t } = useTranslation();
+  const { themeType } = useTheme();
   const { ref, value, reset, onSearch, onChangeText } = searchBarProps;
+
+  const icon =
+    themeType === "dark" ? images.appIcon.light : images.appIcon.dark;
 
   return (
     <Container>
       <HorizontalContainer>
-        <Icon source={images.appIcon.light} />
+        <Icon source={icon} />
         <Title>Git Repos</Title>
       </HorizontalContainer>
 

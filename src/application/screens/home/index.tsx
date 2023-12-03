@@ -2,6 +2,7 @@ import { Container } from "./styles";
 import { TextInput } from "react-native";
 import React, { useRef, useState } from "react";
 import { IRepositoryOwner } from "@/application/models/IRepositoryOwner";
+import { StackRootProps } from "@/application/routes/stack-navigator/StackRootProps";
 
 // HOOKS
 import { useMutation } from "react-query";
@@ -11,7 +12,6 @@ import { useRepository } from "@/application/hooks/useRepository";
 import { Header } from "./components/header";
 import { RepositoryList } from "../../components/repository-list";
 import { RepositoryOwnerCard } from "@/application/components/repository-owner-card";
-import { StackRootProps } from "@/application/routes/stack-navigator/StackRootProps";
 
 export const Home = ({ navigation }: StackRootProps<"RepositoryDetails">) => {
   const {

@@ -7,6 +7,12 @@ export const FlatList = styled.FlatList.attrs({
   contentContainerStyle: { padding: 16 },
 })``;
 
+export const EmptyContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`
+
 export const EmptyAnimation = styled(LottieView).attrs({
   loop: true,
   autoPlay: true,

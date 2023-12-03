@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatListProps } from "react-native";
-import { EmptyAnimation, FlatList } from "./styles";
+import { EmptyAnimation, EmptyContainer, FlatList } from "./styles";
 import { Divider } from "@/application/components/divider";
 
 interface RepositoryListProps extends FlatListProps<any> {
@@ -12,13 +12,20 @@ export const RepositoryList = ({
   navigate,
   ...rest
 }: RepositoryListProps) => {
-  return (
-    <FlatList
-      {...rest}
-      data={data}
-      ItemSeparatorComponent={() => <Divider />}
-      keyExtractor={(_, index) => index.toString()}
-      ListEmptyComponent={() => <EmptyAnimation />}
-    />
-  );
+  if (data.length > 0) {
+    return (
+      <FlatList
+        {...rest}
+        data={data}
+        ItemSeparatorComponent={() => <Divider />}
+        keyExtractor={(_, index) => index.toString()}
+        ListEmptyComponent={() => <EmptyAnimation />}
+      />
+    );
+  } else
+    return (
+      <EmptyContainer>
+        <EmptyAnimation />
+      </EmptyContainer>
+    );
 };

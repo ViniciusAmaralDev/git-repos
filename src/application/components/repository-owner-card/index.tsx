@@ -26,20 +26,26 @@ export const RepositoryOwnerCard = ({
   onDelete,
   onFavorite,
 }: RepositoryOwnerCardProps) => {
-  const { theme } = useTheme();
-  const iconName = data.isFavorite ? "star" : "staro";
-  const iconColor = data.isFavorite
+  const { theme, themeType } = useTheme();
+
+  const isDarkMode = themeType === "dark";
+
+  const iconName = data?.isFavorite ? "star" : "staro";
+
+  const iconColor = data?.isFavorite
     ? theme.colors.warning
-    : theme.colors.border;
+    : isDarkMode
+    ? theme.colors.border
+    : theme.colors.placeholder;
 
   return (
-    <Container onPress={() => navigate(data.owner)}>
-      <ProfileImage uri={data.repositories[0].owner.avatar_url} />
+    <Container onPress={() => navigate(data?.owner)}>
+      <ProfileImage uri={data?.repositories[0].owner.avatar_url} />
 
       <VerticalContainer>
-        <Label>{data.owner}</Label>
-        <Label secondary>
-          {data.repositories.length.toString()} repositórios
+        <Label isDarkMode={isDarkMode}>{data?.owner}</Label>
+        <Label secondary isDarkMode={isDarkMode}>
+          {data?.repositories.length.toString()} repositórios
         </Label>
       </VerticalContainer>
 
@@ -47,18 +53,20 @@ export const RepositoryOwnerCard = ({
         {!!onFavorite && (
           <IconButton
             icon={<StarIcon name={iconName} color={iconColor} />}
-            onPress={() => onFavorite(data.owner)}
+            onPress={() => onFavorite(data?.owner)}
           />
         )}
 
         {!!onDelete && (
           <IconButton
             icon={<TrashIcon />}
-            onPress={() => onDelete(data.owner)}
+            onPress={() => onDelete(data?.owner)}
           />
         )}
 
-        <ArrowIcon />
+        <ArrowIcon
+          color={isDarkMode ? theme.colors.border : theme.colors.placeholder}
+        />
       </ButtonsContainer>
     </Container>
   );

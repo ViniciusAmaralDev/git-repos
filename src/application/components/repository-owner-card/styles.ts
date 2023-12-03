@@ -6,6 +6,7 @@ import { Image } from "@/application/components/base/image";
 
 interface LabelProps {
   secondary?: boolean;
+  isDarkMode?: boolean;
 }
 
 export const Container = styled(Button)`
@@ -36,8 +37,8 @@ export const ProfileImage = styled(Image).attrs({
 export const Label = styled(Text)<LabelProps>`
   font-family: ${({ theme, secondary }) =>
     secondary ? theme.fonts.regular : theme.fonts.medium};
-  color: ${({ theme, secondary }) =>
-    secondary ? theme.colors.border : theme.colors.text};
+  color: ${({ theme, secondary, isDarkMode }) =>
+    secondary ? isDarkMode ? theme.colors.border : theme.colors.placeholder : theme.colors.text};
 `;
 
 export const TrashIcon = styled(Feather).attrs(({ theme }) => ({
@@ -49,7 +50,6 @@ export const TrashIcon = styled(Feather).attrs(({ theme }) => ({
 export const ArrowIcon = styled(AntDesign).attrs(({ theme }) => ({
   size: 20,
   name: "arrowright",
-  color: theme.colors.border,
 }))``;
 
 export const StarIcon = styled(AntDesign).attrs({

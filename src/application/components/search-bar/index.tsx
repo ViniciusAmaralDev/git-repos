@@ -1,9 +1,9 @@
 import { Input } from "../base/input";
-import React, { forwardRef, useRef, useState } from "react";
+import React, { forwardRef } from "react";
 import { IconButton } from "../icon-button";
-import { CloseIcon, Container, SearchButton, SearchIcon } from "./styles";
-import { StyleProp, TextInput, TextInputProps, ViewStyle } from "react-native";
 import { useTheme } from "@/application/contexts/ThemeContext";
+import { StyleProp, TextInputProps, ViewStyle } from "react-native";
+import { CloseIcon, Container, SearchButton, SearchIcon } from "./styles";
 
 interface SearchBarProps extends TextInputProps {
   containerStyle?: StyleProp<ViewStyle>;
