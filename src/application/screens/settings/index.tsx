@@ -36,7 +36,7 @@ export const Settings = () => {
   };
 
   return (
-    <Container header={<Header hideArrowButton title="Configurações" />}>
+    <Container header={<Header hideArrowButton title={t("settings")} />}>
       <HorizontalContainer>
         <Text>{t("dark mode")}</Text>
         <SwitchButton isActive={isDarkMode} onPress={toggleTheme} />
