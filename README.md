@@ -10,6 +10,18 @@ You can also switch between light, dark themes, or follow the device's default t
 
 ---
 
+<div style="display: flex; gap: 16px">
+<img src='./assets/images/empty-home-dark.png' height="500" />
+<img src='./assets/images/home-light.png' height="500" />
+<img src='./assets/images/favorite-repositories-dark.png' height="500" />
+<img src='./assets/images/repository-details-light.png' height="500" />
+<img src='./assets/images/settings-theme-dark.png' height="500" />
+<img src='./assets/images/settings-language-light.png' height="500" />
+</div>
+
+
+---
+
 ## Clone repository
 
 ##### HTTPS
