@@ -16,21 +16,17 @@ import { RepositoryOwnerCard } from "@/application/components/repository-owner-c
 export const Home = ({ navigation }: StackRootProps<"RepositoryDetails">) => {
   const {
     repositories,
-    addRepository,
     fetchRepository,
     deleteRepository,
     handleFavoriteRepository,
   } = useRepository();
 
-  const onSuccessMutation = (value: IRepositoryOwner) => {
+  const addRepository = async (owner: string) => {
     resetSearchValueInput();
-    addRepository(value);
+    await fetchRepository(owner);
   };
 
-  const mutation = useMutation({
-    mutationFn: fetchRepository,
-    onSuccess: onSuccessMutation,
-  });
+  const mutation = useMutation(addRepository);
 
   const searchBarRef = useRef<TextInput>(null);
   const [searchValue, setSearchValue] = useState("");

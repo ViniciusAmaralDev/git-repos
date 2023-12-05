@@ -35,7 +35,7 @@ export const RepositoryDetails = ({
   };
 
   return (
-    <Container header={<Header title="Detalhes" />}>
+    <Container header={<Header title={t("details")} />}>
       <HorizontalContainer>
         <ProfileImage uri={repository.repositories[0].owner.avatar_url} />
 

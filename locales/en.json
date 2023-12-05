@@ -14,5 +14,6 @@
   "theme": "Theme",
   "light":"Light",
   "dark":"Dark",
-  "system":"System"
+  "system":"System",
+  "details": "Details"
 }
